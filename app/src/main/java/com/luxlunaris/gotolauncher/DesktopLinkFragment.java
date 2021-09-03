@@ -13,30 +13,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.luxlunaris.gotolauncher.model.AppLink;
+import com.luxlunaris.gotolauncher.model.DesktopLink;
 
 
-public class AppLinkFragment extends Fragment {
+public class DesktopLinkFragment extends Fragment {
 
 
-    AppLink appLink;
+    DesktopLink desktopLink;
     TextView titleView;
     ImageView imageView;
 
-    public AppLinkFragment() {
+    public DesktopLinkFragment() {
         // Required empty public constructor
     }
 
-
-    public static AppLinkFragment newInstance(AppLink appLink) {
-        AppLinkFragment fragment = new AppLinkFragment();
-        fragment.appLink = appLink;
+    public static DesktopLinkFragment newInstance(DesktopLink appLink) {
+        DesktopLinkFragment fragment = new DesktopLinkFragment();
+        fragment.desktopLink = appLink;
         return fragment;
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_app_link, container, false);
@@ -44,8 +43,8 @@ public class AppLinkFragment extends Fragment {
         imageView = v.findViewById(R.id.imageView);
 
 
-        titleView.setText(appLink.getName(getContext()));
-        imageView.setForeground(appLink.getIcon(getContext()));
+        titleView.setText(desktopLink.getLabel(getContext()));
+        imageView.setForeground(desktopLink.getIcon(getContext()));
         return v;
     }
 }

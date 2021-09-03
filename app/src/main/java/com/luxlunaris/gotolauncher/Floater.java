@@ -11,6 +11,12 @@ import android.widget.SearchView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.luxlunaris.gotolauncher.control.Paths;
+import com.luxlunaris.skratchbook.interfaces.Metadata;
+import com.luxlunaris.skratchbook.model.MetadataFile;
+import com.luxlunaris.skratchbook.model.Tag;
+
+import java.io.File;
 import java.util.Random;
 
 /**
@@ -23,6 +29,7 @@ public class Floater extends LinearLayout implements View.OnTouchListener {
     float oldXPos, oldYPos = -1;
 
     OnClickListener onClickListener;
+
 
     public Floater(Context context) {
         super(context);
@@ -55,11 +62,9 @@ public class Floater extends LinearLayout implements View.OnTouchListener {
                 return true;
 
             case MotionEvent.ACTION_UP:
-                //Log.d("TEST", "release");
 
                 newX = event.getRawX() + dX;
                 newY = event.getRawY() + dY;
-
 
                 if(oldXPos==newX && oldYPos==newY) {
                     onClick();
@@ -68,7 +73,7 @@ public class Floater extends LinearLayout implements View.OnTouchListener {
                 oldXPos = newX;
                 oldYPos = newY;
 
-                onStoppedMoving();
+                onStoppedMoving(newX, newY);
 
                 return true;
         }
@@ -117,20 +122,7 @@ public class Floater extends LinearLayout implements View.OnTouchListener {
         this.onClickListener = onClickListener;
     }
 
-    protected void onStoppedMoving(){
-        Log.d("TEST", "STOPPED MOVING");
-    }
-
-
-    public float getXPos(){
-        return oldXPos;
-    }
-
-    public float getYPos(){
-        return oldYPos;
-    }
-
-
+    protected void onStoppedMoving(float x, float y){ }
 
 
 

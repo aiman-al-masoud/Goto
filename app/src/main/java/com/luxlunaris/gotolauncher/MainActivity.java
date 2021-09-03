@@ -4,13 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.luxlunaris.gotolauncher.model.AppLink;
+import com.luxlunaris.gotolauncher.model.FileLink;
 
+/**
+ * This activity functions as the "desktop"-part of the launcher.
+ */
 public class MainActivity extends AppCompatActivity {
 
 
@@ -24,27 +24,22 @@ public class MainActivity extends AppCompatActivity {
         consLay = (ConstraintLayout) findViewById(R.id.layout_main);
 
 
-        /*
-        Floater f = new Floater(this);
         AppLink appLink = new AppLink("com.android.chrome", "com.google.android.apps.chrome.Main");
-
-        f.addFragment(AppLinkFragment.newInstance(appLink));
-        f.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("TEST", "click!");
-            }
-        });
+        DesktopLinkFloater f = new DesktopLinkFloater(this, appLink);
+        consLay.addView(f);
+        appLink = new AppLink("com.luxlunaris.noadpadlight", "com.luxlunaris.noadpadlight.ui.MainActivity");
+        f = new DesktopLinkFloater(this, appLink);
         consLay.addView(f);
 
-         */
 
-        AppLink appLink = new AppLink("com.android.chrome", "com.google.android.apps.chrome.Main");
-        AppLinkFloater f = new AppLinkFloater(this, appLink);
+        FileLink fLink = new FileLink("/data/user/0/com.luxlunaris.gotolauncher/files/links_metadata");
+        consLay.addView( new DesktopLinkFloater(this, fLink));
 
-        consLay.addView(f);
+
 
 
 
     }
+
+
 }
