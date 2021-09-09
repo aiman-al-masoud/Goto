@@ -24,7 +24,9 @@ public class Paths {
      * @return
      */
     public String LINKS_METADATA_DIR(){
-        return context.getFilesDir()+ File.separator+LINKS_METADATA_DIR;
+        String path = context.getFilesDir()+ File.separator+LINKS_METADATA_DIR;
+        new File(path).mkdirs();
+        return path;
     }
 
 

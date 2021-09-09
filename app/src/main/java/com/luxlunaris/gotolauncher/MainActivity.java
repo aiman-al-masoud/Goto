@@ -24,16 +24,16 @@ public class MainActivity extends AppCompatActivity {
         consLay = (ConstraintLayout) findViewById(R.id.layout_main);
 
 
-        AppLink appLink = new AppLink("com.android.chrome", "com.google.android.apps.chrome.Main");
+        AppLink appLink = new AppLink("com.android.chrome", "com.google.android.apps.chrome.Main", this);
         DesktopLinkFloater f = new DesktopLinkFloater(this, appLink);
         consLay.addView(f);
-        appLink = new AppLink("com.luxlunaris.noadpadlight", "com.luxlunaris.noadpadlight.ui.MainActivity");
+        appLink = new AppLink("com.luxlunaris.noadpadlight", "com.luxlunaris.noadpadlight.ui.MainActivity", this);
         f = new DesktopLinkFloater(this, appLink);
         consLay.addView(f);
 
 
-        FileLink fLink = new FileLink("/data/user/0/com.luxlunaris.gotolauncher/files/links_metadata");
-        consLay.addView( new DesktopLinkFloater(this, fLink));
+        //FileLink fLink = new FileLink("/data/user/0/com.luxlunaris.gotolauncher/files/links_metadata", this);
+        //consLay.addView( new DesktopLinkFloater(this, fLink));
 
 
 

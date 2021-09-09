@@ -11,11 +11,12 @@ import com.luxlunaris.gotolauncher.R;
 
 import java.io.File;
 
-public class FileLink implements DesktopLink{
+public class FileLink extends AbstractDesktopLink{
 
     String pathname;
 
-    public FileLink(String pathname){
+    public FileLink(String pathname, Context context){
+        super(context, "skdkdk");
         this.pathname = pathname;
     }
 
@@ -38,14 +39,16 @@ public class FileLink implements DesktopLink{
     public Intent getLaunchIntent(Context context) {
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
-
         Uri uri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".fileprovider",new File(pathname));
-
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
         shareIntent.setType("image/jpeg");
         context.startActivity(Intent.createChooser(shareIntent,"send"));
         return shareIntent;
     }
+
+
+
+
 
 
 }

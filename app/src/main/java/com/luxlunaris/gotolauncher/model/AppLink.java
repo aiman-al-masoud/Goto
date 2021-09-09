@@ -7,18 +7,24 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 
+import com.luxlunaris.gotolauncher.control.Paths;
+import com.luxlunaris.skratchbook.interfaces.Metadata;
+import com.luxlunaris.skratchbook.model.MetadataFile;
+
 /**
  * A desktop link to an app.
  */
-public class AppLink implements DesktopLink{
+public class AppLink extends AbstractDesktopLink{
 
     private String packageName;
     private String activityName;
 
 
-    public AppLink(String packageName, String activityName){
+    public AppLink(String packageName, String activityName, Context context){
+        super(context, packageName+"_"+activityName);
         this.packageName = packageName;
         this.activityName = activityName;
+        metadata = new MetadataFile(Paths.instance(context).LINKS_METADATA_DIR()+getId());
     }
 
     public Intent getLaunchIntent(Context context){
@@ -45,7 +51,6 @@ public class AppLink implements DesktopLink{
         return resolveInfo;
     }
 
-
     public String getPackageName(){
         return packageName;
     }
@@ -57,6 +62,10 @@ public class AppLink implements DesktopLink{
     public String getId(){
         return  getPackageName()+"_"+getActivityName();
     }
+
+
+
+
 
 
 
